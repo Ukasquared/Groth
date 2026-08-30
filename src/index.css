@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom design tokens — extend Tailwind's default theme here.
+     Example: --color-brand-500: oklch(0.62 0.19 260); */
+}
