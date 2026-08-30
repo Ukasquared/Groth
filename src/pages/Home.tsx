@@ -1,4 +1,3 @@
-import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
   CheckCircle2,
@@ -15,6 +14,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import type * as React from "react";
 import heroInterviewImg from "@/assets/hero-interview.jpg";
 import heroJobsImg from "@/assets/hero-jobs.jpg";
 import heroLearnImg from "@/assets/hero-learn.jpg";
@@ -22,29 +22,9 @@ import { SiteHeader } from "@/components/landing/SiteHeader";
 import { Button } from "@/components/ui/button";
 import { useReveal } from "@/hooks/use-reveal";
 
-
-
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "GROTH AI — Build the Career You're Ready For" },
-      {
-        name: "description",
-        content:
-          "GROTH is your AI career copilot: learn the right skills, discover better opportunities, build tailored applications, and ace interviews.",
-      },
-      { property: "og:title", content: "GROTH AI — Build the Career You're Ready For" },
-      {
-        property: "og:description",
-        content:
-          "Learn the right skills, discover better opportunities, build tailored applications, and prepare for interviews with your AI career copilot.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
-  component: Index,
-});
+const PAGE_TITLE = "GROTH AI — Build the Career You're Ready For";
+const PAGE_DESCRIPTION =
+  "GROTH is your AI career copilot: learn the right skills, discover better opportunities, build tailored applications, and ace interviews.";
 
 const PATHWAY = [
   { icon: GraduationCap, label: "Learn" },
@@ -126,6 +106,22 @@ const FAQS = [
 
 function Index() {
   useReveal();
+
+  // Set document head metadata on mount (replaces TanStack Router's `head`).
+  useEffect(() => {
+    document.title = PAGE_TITLE;
+
+    const setMeta = (name: string, content: string) => {
+      let tag = document.querySelector<HTMLMetaElement>(`meta[name="${name}"]`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute("name", name);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", content);
+    };
+    setMeta("description", PAGE_DESCRIPTION);
+  }, []);
 
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
@@ -299,83 +295,6 @@ function HeroShowcase() {
               />
             ))}
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function CareerCard() {
-  return (
-    <div className="relative mx-auto max-w-md animate-float-soft">
-      <div className="glass-panel rounded-2xl p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Career Trajectory
-            </p>
-            <p className="mt-1 font-display text-lg font-bold">Senior Product Manager</p>
-          </div>
-          <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-            On Track
-          </span>
-        </div>
-
-        <div className="mt-6">
-          <div className="flex items-center justify-between text-sm">
-            <span className="inline-flex items-center gap-1.5 font-medium text-on-surface-variant">
-              <GraduationCap className="size-4 text-primary" aria-hidden="true" />
-              Skills
-            </span>
-            <span className="font-semibold">75%</span>
-          </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-surface-highest">
-            <div
-              className="h-full w-3/4 rounded-full bg-[image:var(--gradient-brand)]"
-              role="progressbar"
-              aria-valuenow={75}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-label="Skill progress"
-            />
-          </div>
-        </div>
-
-        <div className="mt-6">
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            AI Projection
-          </p>
-          <div className="mt-3 flex h-20 items-end gap-2" aria-hidden="true">
-            {[35, 45, 42, 58, 66, 78, 92].map((h, i) => (
-              <div
-                key={i}
-                style={{ height: `${h}%` }}
-                className={`flex-1 rounded-t-md ${
-                  i === 6 ? "bg-[image:var(--gradient-brand)]" : "bg-primary/20"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="ai-border-gradient glass-panel absolute -bottom-8 -left-4 w-[calc(100%-1rem)] rounded-2xl p-4 sm:-left-10">
-        <div className="flex items-start gap-3">
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-[image:var(--gradient-brand)] text-primary-foreground">
-            <Sparkles className="size-4" aria-hidden="true" />
-          </span>
-          <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-wider text-primary">
-              Insight
-            </p>
-            <p className="mt-1 text-sm leading-snug text-on-surface-variant">
-              Your profile matches a newly opened <span className="font-semibold text-foreground">Lead PM</span> role.
-              Generate a tailored application?
-            </p>
-          </div>
-          <Button variant="brand" size="sm" className="shrink-0 rounded-lg">
-            Generate
-          </Button>
         </div>
       </div>
     </div>
@@ -884,3 +803,5 @@ function SiteFooter() {
     </footer>
   );
 }
+
+export default Index;

@@ -23,7 +23,7 @@ npm run dev
 
 ## Built with
 
-- TanStack Start
+- React Router (react-router-dom)
 - TypeScript
 - React
 - Tailwind CSS
