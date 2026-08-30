@@ -1,47 +1,29 @@
-# Groth
+# Welcome to your Lovable project
 
-A React + Vite + TypeScript project styled with Tailwind CSS.
+This project was built with [Lovable](https://lovable.dev).
 
-## Stack
+## Build with Lovable
 
-| Tool        | Version         |
-| ----------- | --------------- |
-| React       | 19               |
-| Vite        | 8                |
-| TypeScript  | 5.9              |
-| Tailwind CSS| 4 (via `@tailwindcss/vite`) |
-| ESLint      | 10 (flat config) |
+Open your project in the [Lovable editor](https://lovable.dev) and keep building.
 
-## Commands
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
+- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
 
-```bash
-npm install        # install dependencies
-npm run dev        # start the dev server (default http://localhost:5173)
-npm run build      # type-check (tsc -b) + production build to dist/
-npm run preview    # preview the production build
-npm run lint       # lint all .ts/.tsx files
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+```sh
+git clone <this-repository-url>
+cd <repository-name>
+npm i
+npm run dev
 ```
 
-## Project layout
+## Built with
 
-```
-├── index.html          # HTML entry point
-├── src/
-│   ├── main.tsx        # React bootstrap
-│   ├── App.tsx         # root component
-│   └── index.css       # Tailwind entry (@import "tailwindcss")
-├── public/             # static assets (served at /)
-├── vite.config.ts      # Vite + React + Tailwind plugins
-├── eslint.config.js    # ESLint flat config
-├── tsconfig.json       # TS project references
-├── tsconfig.app.json   # TS config for src/
-└── tsconfig.node.json  # TS config for vite.config.ts
-```
-
-### Tailwind CSS v4 notes
-
-- Tailwind v4 needs **no** `tailwind.config.js` / `postcss.config.js`.
-  It is wired through the `@tailwindcss/vite` plugin in `vite.config.ts`.
-- Global styles are imported in `src/index.css` with `@import "tailwindcss";`.
-- Extend the default theme with the `@theme { ... }` block in `src/index.css`
-  (e.g. custom colors, spacing, fonts) — see the commented example there.
+- TanStack Start
+- TypeScript
+- React
+- Tailwind CSS
