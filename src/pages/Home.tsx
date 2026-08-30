@@ -165,8 +165,8 @@ function HeroSection() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-surface-variant">
-            Learn the right skills, discover better opportunities, build tailored applications,
-            and prepare for interviews with your AI career copilot.
+            Learn the right skills, discover better opportunities, build tailored applications, and
+            prepare for interviews with your AI career copilot.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -318,7 +318,10 @@ const FEATURES = [
 
 function FeatureMarquee() {
   return (
-    <section aria-label="Features" className="marquee-paused overflow-hidden border-b border-border/60 py-6">
+    <section
+      aria-label="Features"
+      className="marquee-paused overflow-hidden border-b border-border/60 py-6"
+    >
       <div className="animate-marquee flex w-max gap-3 pr-3">
         {[0, 1].map((copy) => (
           <ul key={copy} className="flex shrink-0 gap-3" aria-hidden={copy === 1}>
@@ -392,23 +395,25 @@ function LearnSection() {
               </div>
             </div>
             <ul className="mt-6 space-y-3">
-              {["Data wrangling with pandas", "SQL for analysts", "Storytelling with dashboards"].map(
-                (item, i) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 rounded-xl border border-border/60 bg-surface-lowest px-4 py-3"
-                  >
-                    <span className="flex size-6 items-center justify-center rounded-full bg-primary/10 text-[11px] font-bold text-primary">
-                      {i + 1}
-                    </span>
-                    <span className="text-sm font-medium">{item}</span>
-                    <CheckCircle2
-                      className={`ml-auto size-4 ${i === 0 ? "text-primary" : "text-border"}`}
-                      aria-hidden="true"
-                    />
-                  </li>
-                ),
-              )}
+              {[
+                "Data wrangling with pandas",
+                "SQL for analysts",
+                "Storytelling with dashboards",
+              ].map((item, i) => (
+                <li
+                  key={item}
+                  className="flex items-center gap-3 rounded-xl border border-border/60 bg-surface-lowest px-4 py-3"
+                >
+                  <span className="flex size-6 items-center justify-center rounded-full bg-primary/10 text-[11px] font-bold text-primary">
+                    {i + 1}
+                  </span>
+                  <span className="text-sm font-medium">{item}</span>
+                  <CheckCircle2
+                    className={`ml-auto size-4 ${i === 0 ? "text-primary" : "text-border"}`}
+                    aria-hidden="true"
+                  />
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -458,9 +463,7 @@ function ApplySection() {
         </div>
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
-          <article
-            className="reveal group rounded-2xl border border-border/60 bg-surface-lowest p-8 shadow-elegant transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
-          >
+          <article className="reveal group rounded-2xl border border-border/60 bg-surface-lowest p-8 shadow-elegant transition-all duration-300 hover:-translate-y-1 hover:shadow-lift">
             <span className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-[image:var(--gradient-brand)] group-hover:text-primary-foreground">
               <FileText className="size-5" aria-hidden="true" />
             </span>
@@ -473,7 +476,10 @@ function ApplySection() {
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-secondary-container"
             >
               See how Resume AI works
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight
+                className="size-4 transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
             </a>
           </article>
 
@@ -493,7 +499,10 @@ function ApplySection() {
               className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors hover:text-secondary-container"
             >
               Try a practice round
-              <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+              <ArrowRight
+                className="size-4 transition-transform group-hover:translate-x-1"
+                aria-hidden="true"
+              />
             </a>
           </article>
         </div>
@@ -511,9 +520,7 @@ function StarRating({ rating }: { rating: number }) {
         <Star
           key={i}
           className={`size-4 ${
-            i < rating
-              ? "fill-secondary-container text-secondary-container"
-              : "text-border"
+            i < rating ? "fill-secondary-container text-secondary-container" : "text-border"
           }`}
           aria-hidden="true"
         />
