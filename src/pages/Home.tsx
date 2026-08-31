@@ -154,13 +154,13 @@ function HeroSection() {
 
       <Navbar />
 
-      <main className="w-full max-w-7xl px-6 flex flex-col items-center flex-1">
+      <div className="flex w-full max-w-7xl flex-1 flex-col items-center px-4 sm:px-6 lg:px-8">
 
         <Hero />
 
         <FeatureCards />
 
-      </main>
+      </div>
 
     </div>
       {/*  */}
