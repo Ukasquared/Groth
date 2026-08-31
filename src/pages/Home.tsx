@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type * as React from "react";
+import DetailCards from "@/components/ui/detailcards";
 
 // import { SiteHeader } from "@/components/landing/SiteHeader";
 import { Button } from "@/components/ui/button";
@@ -131,6 +132,7 @@ function Index() {
       <main>
         <HeroSection />
         <FeatureMarquee />
+        <DetailCards />
         <PathwaySection />
         <LearnSection />
         <ApplySection />
