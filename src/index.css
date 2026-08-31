@@ -5,6 +5,12 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+
+  --color-brand-navy: #052a36;
+  --color-brand-card: #517495;
+  --color-brand-orange: #f97316;
+  --color-brand-blue: #2563eb;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -47,8 +53,8 @@
   --color-secondary-container: var(--secondary-container);
   --color-on-secondary-container: var(--on-secondary-container);
 
-  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display:  "Inter display", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter display", ui-sans-serif, system-ui, sans-serif;
 
   --shadow-elegant: 0 8px 30px -6px color-mix(in oklab, var(--foreground) 8%, transparent);
   --shadow-lift: 0 24px 60px -20px color-mix(in oklab, var(--primary) 28%, transparent);
@@ -58,7 +64,9 @@
 :root {
   --radius: 0.5rem;
 
-  --background: oklch(0.978 0.006 288);
+  
+
+  --background:  oklch(26.615% 0.04574 224.41);;
   --foreground: oklch(0.21 0.045 268);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.21 0.045 268);
@@ -111,11 +119,22 @@
     color: var(--color-foreground);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+      margin: 0;
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
   }
+
+  .glass-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
 }
 
 /* Frosted surface for the sticky nav and floating cards */
@@ -155,6 +174,9 @@
 @utility text-balance {
   text-wrap: balance;
 }
+
+
+
 
 /* Scroll-reveal helper — elements start hidden, .is-visible fades them up */
 @layer components {

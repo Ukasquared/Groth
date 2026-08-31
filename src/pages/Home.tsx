@@ -15,12 +15,15 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type * as React from "react";
-import heroInterviewImg from "@/assets/hero-interview.jpg";
-import heroJobsImg from "@/assets/hero-jobs.jpg";
-import heroLearnImg from "@/assets/hero-learn.jpg";
-import { SiteHeader } from "@/components/landing/SiteHeader";
+
+// import { SiteHeader } from "@/components/landing/SiteHeader";
 import { Button } from "@/components/ui/button";
 import { useReveal } from "@/hooks/use-reveal";
+import Navbar from "@/components/ui/Navbar";
+import Hero from "@/components/ui/Hero";
+import FeatureCards from "@/components/ui/FeatureCards";
+
+
 
 const PAGE_TITLE = "GROTH AI — Build the Career You're Ready For";
 const PAGE_DESCRIPTION =
@@ -125,7 +128,6 @@ function Index() {
 
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
       <main>
         <HeroSection />
         <FeatureMarquee />
@@ -146,158 +148,23 @@ function Index() {
 
 function HeroSection() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 sm:pt-40 sm:pb-28">
+    <section className="relative overflow-hidden ">
       {/* Ambient background washes */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 left-1/2 h-[480px] w-[720px] -translate-x-1/2 rounded-full bg-primary/10 blur-3xl animate-pulse-glow" />
-        <div className="absolute right-[-120px] top-40 h-[360px] w-[360px] rounded-full bg-secondary-container/15 blur-3xl" />
-      </div>
+       <div className="min-h-screen bg-brand-navy text-white antialiased flex flex-col items-center">
 
-      <div className="relative mx-auto grid max-w-[1280px] items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-        <div className="reveal">
-          <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-surface-lowest px-4 py-1.5 text-xs font-semibold tracking-wide text-primary shadow-elegant">
-            <Sparkles className="size-3.5" aria-hidden="true" />
-            Your AI Career Copilot
-          </span>
+      <Navbar />
 
-          <h1 className="mt-6 text-balance font-display text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-            Build the career <span className="gradient-text">you're ready for.</span>
-          </h1>
+      <main className="w-full max-w-7xl px-6 flex flex-col items-center flex-1">
 
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-on-surface-variant">
-            Learn the right skills, discover better opportunities, build tailored applications, and
-            prepare for interviews with your AI career copilot.
-          </p>
+        <Hero />
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <Button variant="brand" size="lg" className="gap-2 rounded-xl">
-              Start Growing
-              <ArrowRight className="size-4" aria-hidden="true" />
-            </Button>
-            <Button variant="outline" size="lg" className="rounded-xl">
-              Explore GROTH
-            </Button>
-          </div>
+        <FeatureCards />
 
-          <p className="mt-6 text-sm text-muted-foreground">
-            Join <span className="font-semibold text-foreground">50,000+ professionals</span>{" "}
-            advancing today.
-          </p>
-        </div>
+      </main>
 
-        <div className="reveal" style={{ "--reveal-delay": "150ms" } as React.CSSProperties}>
-          <HeroShowcase />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------------------- Hero showcase ------------------------------- */
-
-const SHOWCASE = [
-  {
-    src: heroLearnImg,
-    icon: GraduationCap,
-    title: "Learn the right skills",
-    caption: "AI-curated learning paths close your exact skill gaps.",
-  },
-  {
-    src: heroJobsImg,
-    icon: Briefcase,
-    title: "Discover better opportunities",
-    caption: "Live market matching surfaces roles you're ready to win.",
-  },
-  {
-    src: heroInterviewImg,
-    icon: Mic,
-    title: "Ace every interview",
-    caption: "Vocal AI mock interviews rehearse the real pressure.",
-  },
-];
-
-function HeroShowcase() {
-  const [index, setIndex] = useState(0);
-  const reduceMotionRef = useRef(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    reduceMotionRef.current = mq.matches;
-    const onChange = (e: MediaQueryListEvent) => {
-      reduceMotionRef.current = e.matches;
-    };
-    mq.addEventListener("change", onChange);
-
-    const timer = window.setInterval(() => {
-      if (!reduceMotionRef.current && !document.hidden) {
-        setIndex((i) => (i + 1) % SHOWCASE.length);
-      }
-    }, 4500);
-
-    return () => {
-      mq.removeEventListener("change", onChange);
-      window.clearInterval(timer);
-    };
-  }, []);
-
-  const active = SHOWCASE[index];
-
-  return (
-    <div className="relative mx-auto max-w-md animate-float-soft">
-      {/* Ambient glows */}
-      <div aria-hidden="true" className="pointer-events-none absolute -inset-8">
-        <div className="absolute -top-6 left-1/4 h-40 w-40 rounded-full bg-primary/15 blur-3xl" />
-        <div className="absolute -bottom-6 right-1/4 h-40 w-40 rounded-full bg-secondary-container/20 blur-3xl" />
-      </div>
-
-      <div className="glass-panel relative overflow-hidden rounded-3xl">
-        <div className="relative aspect-square">
-          {SHOWCASE.map((slide, i) => (
-            <img
-              key={slide.title}
-              src={slide.src}
-              alt={slide.title}
-              width={1024}
-              height={1024}
-              loading={i === 0 ? "eager" : "lazy"}
-              aria-hidden={i !== index}
-              className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none ${
-                i === index ? "opacity-100" : "opacity-0"
-              }`}
-            />
-          ))}
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background/90 to-transparent"
-          />
-        </div>
-
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5">
-          <div className="min-w-0">
-            <p className="inline-flex items-center gap-1.5 font-display text-sm font-bold">
-              <active.icon className="size-4 text-primary" aria-hidden="true" />
-              {active.title}
-            </p>
-            <p className="mt-1 text-xs leading-snug text-on-surface-variant">{active.caption}</p>
-          </div>
-          <div className="flex shrink-0 gap-1.5" role="tablist" aria-label="Showcase slides">
-            {SHOWCASE.map((slide, i) => (
-              <button
-                key={slide.title}
-                type="button"
-                role="tab"
-                aria-selected={i === index}
-                aria-label={`Show ${slide.title}`}
-                onClick={() => setIndex(i)}
-                className={`h-1.5 rounded-full transition-all duration-300 motion-reduce:transition-none ${
-                  i === index ? "w-5 bg-primary" : "w-1.5 bg-foreground/25 hover:bg-primary/50"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
     </div>
+      {/*  */}
+    </section>
   );
 }
 
