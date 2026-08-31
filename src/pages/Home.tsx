@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type * as React from "react";
+import DetailCards from "@/components/ui/detailcards";
 
 // import { SiteHeader } from "@/components/landing/SiteHeader";
 import { Button } from "@/components/ui/button";
@@ -131,6 +132,7 @@ function Index() {
       <main>
         <HeroSection />
         <FeatureMarquee />
+        <DetailCards />
         <PathwaySection />
         <LearnSection />
         <ApplySection />
@@ -154,13 +156,13 @@ function HeroSection() {
 
       <Navbar />
 
-      <main className="w-full max-w-7xl px-6 flex flex-col items-center flex-1">
+      <div className="flex w-full max-w-7xl flex-1 flex-col items-center px-4 sm:px-6 lg:px-8">
 
         <Hero />
 
         <FeatureCards />
 
-      </main>
+      </div>
 
     </div>
       {/*  */}
